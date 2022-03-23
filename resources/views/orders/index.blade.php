@@ -44,8 +44,8 @@
                 <tr>
                     <td>{{$order->id}}</td>
                     <td>{{$order->getCustomerName()}}</td>
-                    <td>{{ config('') }} {{$order->formattedTotal()}}</td>
-                    <td>{{ config('') }} {{$order->formattedReceivedAmount()}}</td>
+                    <td>{{ config('settings.currency_symbol') }} {{$order->formattedTotal()}}</td>
+                    <td>{{ config('settings.currency_symbol') }} {{$order->formattedReceivedAmount()}}</td>
                     <td>
                         @if($order->receivedAmount() == 0)
                             <span class="badge badge-danger">Not Paid</span>
@@ -57,7 +57,7 @@
                             <span class="badge badge-info">Change</span>
                         @endif
                     </td>
-                    <td>{{config('')}} {{number_format($order->total() - $order->receivedAmount(), 2)}}</td>
+                    <td>{{config('settings.currency_symbol')}} {{number_format($order->total() - $order->receivedAmount(), 2)}}</td>
                     <td>{{$order->created_at}}</td>
                 </tr>
                 @endforeach
@@ -66,8 +66,8 @@
                 <tr>
                     <th></th>
                     <th></th>
-                    <th>{{ config('') }} {{ number_format($total, 2) }}</th>
-                    <th>{{ config('') }} {{ number_format($receivedAmount, 2) }}</th>
+                    <th>{{ config('settings.currency_symbol') }} {{ number_format($total, 2) }}</th>
+                    <th>{{ config('settings.currency_symbol') }} {{ number_format($receivedAmount, 2) }}</th>
                     <th></th>
                     <th></th>
                     <th></th>

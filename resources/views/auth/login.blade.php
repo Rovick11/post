@@ -10,19 +10,18 @@
 @endsection
 
 @section('content')
-<body style="background-color: black">
 <p class="login-box-msg">Sign in to start your session</p>
 
 <form action="{{ route('login') }}" method="post">
     @csrf
-    <div class="form-group" style="background-color: blue;">
+    <div class="form-group">
 
         <div class="input-group">
             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                 placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <span class="fas fa-envelope" style="color: white"></span>
+                    <span class="fas fa-envelope"></span>
                 </div>
             </div>
         </div>
@@ -32,14 +31,14 @@
         </span>
         @enderror
     </div>
-    <div class="form-group" style="background-color: blue;">
+    <div class="form-group">
 
         <div class="input-group">
             <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password"
                 name="password" required autocomplete="current-password">
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <span class="fas fa-lock" style="color: white"></span>
+                    <span class="fas fa-lock"></span>
                 </div>
             </div>
         </div>
@@ -60,7 +59,7 @@
         </div>
         <!-- /.col -->
         <div class="col-4">
-            <button type="submit" class="btn btn-success btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
         </div>
         <!-- /.col -->
     </div>
@@ -72,5 +71,4 @@
 <p class="mb-0">
     <a href="{{ route('register')}}" class="text-center">Register a new membership</a>
 </p>
-</body>
 @endsection

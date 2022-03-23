@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label for="currency_symbol">Currency symbol</label>
                     <input type="text" name="currency_symbol" class="form-control @error('currency_symbol') is-invalid @enderror" id="currency_symbol"
-                           placeholder="Currency symbol" value="{{ old('currency_symbol', config('')) }}">
+                           placeholder="Currency symbol" value="{{ old('currency_symbol', config('settings.currency_symbol')) }}">
                     @error('currency_symbol')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

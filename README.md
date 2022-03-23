@@ -8,7 +8,7 @@ The project was created while recording video "Create POS System Using Laravel"
 
 ### Requirements
 
-For system requirements you [Check Laravel Requirement](https://laravel.com/docs/8.x/deployment#server-requirements)
+For system requirements you [Check Laravel Requirement](https://laravel.com/docs/9.x/deployment#server-requirements)
 
 ### Clone the repository from github.
 
@@ -34,25 +34,12 @@ Rename or copy `.env.example` file to `.env` 1.`php artisan key:generate` to gen
 ### Database
 
 1. Migrate database table `php artisan migrate`
-1. Generate config `php artisan db:seed`
+1. `php artisan db:seed`, this will initialize settings and create and admin user for you [email: admin@gmail.com  - password: admin123]
 
 ### Install Node Dependencies(optional)
 
 1. `npm install` to install node dependencies
 1. `npm run dev` to build our javascript
-
-### Create Admin Account
-
-1. `php artisan tinker` and than paste
-    ```php
-    App\Models\User::create([
-        'first_name' => 'Admin',
-        'last_name' => 'admin',
-        'email'=>'admin@gmail.com',
-        'password' => bcrypt('admin')
-    ]
-    ```
-    hit enter.
 
 ### Create storage link
 
@@ -61,8 +48,8 @@ Rename or copy `.env.example` file to `.env` 1.`php artisan key:generate` to gen
 ### Run Server
 
 1. `php artisan serve` or Laravel Homestead
-1. Visit `localhost:8000` in your browser
-1. Visit `/admin` if you want to access the admin. Email: `admin@gmail.com`, Password: `admin`.
+1. Visit `localhost:8000` in your browser. Email: `admin@gmail.com`, Password: `admin123`.
+1. Online demo: [pos.khmernokor.com](https://pos.khmernokor.com/)
 
 ### Screenshots
 
@@ -81,13 +68,3 @@ Rename or copy `.env.example` file to `.env` 1.`php artisan key:generate` to gen
 #### Customer list
 
 ![SS](https://raw.githubusercontent.com/angkosal/laravel-pos/master/screenshots/customer_list.png)
-
-## Donation
-
-Support this projects (Cambodia).
-
-<img src="https://adscom.biz/wp-content/uploads/2017/02/ABA-logo-no-padding.png" alt="ABA logo" width="150px" />
-
-#### ORNG SORL
-
-#### 000 294 471
