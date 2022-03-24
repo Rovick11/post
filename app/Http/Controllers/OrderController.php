@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderStoreRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
@@ -51,5 +53,10 @@ class OrderController extends Controller
             'user_id' => $request->user()->id,
         ]);
         return 'success';
+    }
+
+    public function reciept()
+    {
+        return view('orders\reciept');
     }
 }

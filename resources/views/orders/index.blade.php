@@ -37,6 +37,7 @@
                     <th>Status</th>
                     <th>To Pay</th>
                     <th>Created At</th>
+                    <th>Receipt</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,6 +60,7 @@
                     </td>
                     <td>{{config('settings.currency_symbol')}} {{number_format($order->total() - $order->receivedAmount(), 2)}}</td>
                     <td>{{$order->created_at}}</td>
+                    <td><a href="{{ url('/orders/reciept/'.$order['id']) }}" class="btn btn-success">View</a></td>
                 </tr>
                 @endforeach
             </tbody>
