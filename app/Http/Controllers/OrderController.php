@@ -7,6 +7,8 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Arr;
+use LDAP\Result;
 
 class OrderController extends Controller
 {
@@ -62,6 +64,8 @@ class OrderController extends Controller
         $data = collect($result)->map(function($x){ return (array) $x; })->toArray();
         $result1 = DB::select("select * from order_items where order_id = '$id'");
         $data1 = collect($result1)->map(function($x){ return (array) $x; })->toArray();
+        $result2 = DB::select("select * from payments where order_id = '$id'");
+        $data2 = collect($result2)->map(function($x){ return (array) $x;})->toArray();
         return view('orders.reciept',['data'=>$data],['data1'=>$data1]);
     }
 }
