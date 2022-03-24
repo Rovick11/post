@@ -57,6 +57,11 @@ class OrderController extends Controller
 
     public function reciept()
     {
-        return view('orders\reciept');
+        $id = last(request()->segments());
+        $result = DB::select("select * from orders where id = '$id'");
+        $data = collect($result)->map(function($x){ return (array) $x; })->toArray();
+        $result1 = DB::select("select * from order_items where order_id = '$id'");
+        $data1 = collect($result1)->map(function($x){ return (array) $x; })->toArray();
+        return view('orders.reciept',['data'=>$data],['data1'=>$data1]);
     }
 }
