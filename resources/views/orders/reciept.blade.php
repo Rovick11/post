@@ -9,6 +9,10 @@
 @foreach ($data1 as $data1)
 <label for="">Price: </label><b>{{$data1['price']}}</b>
 @endforeach
+
+@foreach ($data2 as $data2)
+
+@endforeach
 <br><br><br><br><br><br><br>
 <button onclick="window.print()" class="btn btn-app">Print Reciept</button>
 </center>

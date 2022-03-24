@@ -66,6 +66,6 @@ class OrderController extends Controller
         $data1 = collect($result1)->map(function($x){ return (array) $x; })->toArray();
         $result2 = DB::select("select * from payments where order_id = '$id'");
         $data2 = collect($result2)->map(function($x){ return (array) $x;})->toArray();
-        return view('orders.reciept',['data'=>$data],['data1'=>$data1]);
+        return view('orders.reciept',['data'=>$data],['data1'=>$data1],['data2'=>$data2]);
     }
 }
