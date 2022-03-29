@@ -16,13 +16,13 @@
                 <tr>
                     <th>ID</th>
                     <th>Avatar</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
+                    <th>Balance</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Address</th>
-                    <th>Created At</th>
                     <th>Actions</th>
+                    <th>Load</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -32,18 +32,18 @@
                         <td>
                             <img width="50" src="{{$customer->getAvatarUrl()}}" alt="">
                         </td>
-                        <td>{{$customer->first_name}}</td>
-                        <td>{{$customer->last_name}}</td>
+                        <td>{{$customer->first_name}} {{$customer->last_name}}</td>
+                        <td>{{$customer->balance}}</td>
                         <td>{{$customer->email}}</td>
                         <td>{{$customer->phone}}</td>
                         <td>{{$customer->address}}</td>
-                        <td>{{$customer->created_at}}</td>
                         <td>
                             <a href="{{ route('customers.edit', $customer) }}" class="btn btn-primary"><i
                                     class="fas fa-edit"></i></a>
                             <button class="btn btn-danger btn-delete" data-url="{{route('customers.destroy', $customer)}}"><i
                                     class="fas fa-trash"></i></button>
                         </td>
+                        <td><a href="" class="btn btn-success">Load</a></td>
                     </tr>
                 @endforeach
                 </tbody>
