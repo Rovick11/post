@@ -119,6 +119,11 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')->with('success', 'Success, your customer have been updated.');
     }
 
+    public function load(Customer $customer)
+    {
+      return view('customers.load');
+    }
+
     public function destroy(Customer $customer)
     {
         if ($customer->avatar) {

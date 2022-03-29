@@ -43,7 +43,7 @@
                             <button class="btn btn-danger btn-delete" data-url="{{route('customers.destroy', $customer)}}"><i
                                     class="fas fa-trash"></i></button>
                         </td>
-                        <td><a href="" class="btn btn-success">Load</a></td>
+                        <td><a href="{{ route('customers.load', $customer)}}" class="btn btn-success">Load</a></td>
                     </tr>
                 @endforeach
                 </tbody>
