@@ -17,6 +17,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Image</th>
+                    <th>Category</th>
                     <th>Barcode</th>
                     <th>Price</th>
                     <th>Quantity</th>
@@ -32,6 +33,7 @@
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
                     <td><img class="product-img" src="{{ Storage::url($product->image) }}" alt=""></td>
+                    <td>{{$product->category}}</td>
                     <td>{{$product->barcode}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->quantity}}</td>

@@ -20,7 +20,8 @@ class ProductController extends Controller
     {
         $products = new Product();
         if ($request->search) {
-            $products = $products->where('name', 'LIKE', "%{$request->search}%");
+            $products = $products->where('name', 'LIKE', "%{$request->search}%")
+                                 ->orwhere('category', 'LIKE', "%{$request->search}%");
         }
         $products = $products->latest()->paginate(10);
         if (request()->wantsJson()) {
@@ -55,6 +56,7 @@ class ProductController extends Controller
 
         $product = Product::create([
             'name' => $request->name,
+            'category' => $request->category,
             'description' => $request->description,
             'image' => $image_path,
             'barcode' => $request->barcode,
@@ -101,6 +103,7 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request, Product $product)
     {
         $product->name = $request->name;
+        $product->category = $request->category;
         $product->description = $request->description;
         $product->barcode = $request->barcode;
         $product->price = $request->price;

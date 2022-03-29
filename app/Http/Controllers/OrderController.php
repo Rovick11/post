@@ -13,6 +13,7 @@ use LDAP\Result;
 class OrderController extends Controller
 {
     public function index(Request $request) {
+        
         $orders = new Order();
         if($request->start_date) {
             $orders = $orders->where('created_at', '>=', $request->start_date);
@@ -43,11 +44,20 @@ class OrderController extends Controller
         foreach ($cart as $item) {
             $order->items()->create([
                 'price' => $item->price * $item->pivot->quantity,
-                'quantity' => $item->pivot->quantity,
+                'quantity' => $item->quantity,
                 'product_id' => $item->id,
+                'status' => $item->status,
             ]);
-            $item->quantity = $item->quantity - $item->pivot->quantity;
-            $item->save();
+            
+            if ($item->quantity - $item->pivot->quantity < 0){
+                return redirect()->back()->with('alert','Only '.$item->quantity.'left!');
+            }
+            else{
+                $item->quantity = $item->quantity - $item->pivot->quantity;
+                if ($item->quantity == 0){ $item->status = 0; }; 
+                $item->save();
+            }
+            
         }
         $request->user()->cart()->detach();
         $order->payments()->create([
@@ -55,17 +65,5 @@ class OrderController extends Controller
             'user_id' => $request->user()->id,
         ]);
         return 'success';
-    }
-
-    public function reciept()
-    {
-        $id = last(request()->segments());
-        $result = DB::select("select * from orders where id = '$id'");
-        $data = collect($result)->map(function($x){ return (array) $x; })->toArray();
-        $result1 = DB::select("select * from order_items where order_id = '$id'");
-        $data1 = collect($result1)->map(function($x){ return (array) $x; })->toArray();
-        $result2 = DB::select("select * from payments where order_id = '$id'");
-        $data2 = collect($result2)->map(function($x){ return (array) $x;})->toArray();
-        return view('orders.reciept',['data'=>$data],['data1'=>$data1],['data2'=>$data2]);
     }
 }

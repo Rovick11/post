@@ -26,6 +26,7 @@ class ProductUpdateRequest extends FormRequest
         $product_id = $this->route('product')->id;
         return [
             'name' => 'required|string|max:255',
+            'category' => 'nullable|string',
             'description' => 'nullable|string',
             'image' => 'nullable|image',
             'barcode' => 'required|string|max:50|unique:products,barcode,' . $product_id,
