@@ -121,7 +121,13 @@ class CustomerController extends Controller
 
     public function load(Customer $customer)
     {
-      return view('customers.load');
+      $customer->balance = $request->balance;
+
+      if (!$customer->save()) {
+          return redirect()->back()->with('error', 'Sorry, there\'re a problem while updating customer.');
+      }
+      return redirect()->route('customers.index')->with('success', 'Success, your customer have been updated.');
+  }
     }
 
     public function destroy(Customer $customer)
