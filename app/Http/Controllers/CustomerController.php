@@ -119,7 +119,7 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')->with('success', 'Success, your customer have been updated.');
     }
 
-    public function load(Customer $customer)
+    public function load(Request $request, Customer $customer)
     {
         $customer->balance = $request->balance;
 
