@@ -31,6 +31,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('/cart/empty', [CartController::class, 'empty']);
 });
 
+Route::get('qr-code-g', function () {
+  
+    \QrCode::size(500)
+            ->format('png')
+            ->generate('127.0.0.1:8000', public_path('images/qrcode.png'));
+    
+  return view('qrCode');
+    
+});
 Route::get('orders/reciept/{id}','App\Http\Controllers\OrderController@reciept')->name('reciept.{id}');
 Route::get('load/{id}',[LoadController::class, 'load']);
 Route::get('load',[LoadController::class, 'update']);
