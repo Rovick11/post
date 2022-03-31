@@ -53,6 +53,7 @@ class CustomerController extends Controller
         $customer = Customer::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'balance' => $request->balance,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
@@ -98,6 +99,7 @@ class CustomerController extends Controller
     {
         $customer->first_name = $request->first_name;
         $customer->last_name = $request->last_name;
+        $customer->balance = $request->balance;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->address = $request->address;

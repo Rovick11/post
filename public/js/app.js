@@ -69670,7 +69670,7 @@ var Cart = /*#__PURE__*/function (_Component) {
         onChange: this.setCustomerId
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: ""
-      }, "Walking Customer"), customers.map(function (cus) {
+      }, "Walk-in Customer"), customers.map(function (cus) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
           key: cus.id,
           value: cus.id

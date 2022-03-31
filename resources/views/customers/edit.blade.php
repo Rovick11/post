@@ -37,6 +37,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="balance">Balance</label>
+                    <input type="text" name="balance" class="form-control @error('balance') is-invalid @enderror" id="balance"
+                           placeholder="Balance" value="{{ old('balance', $customer->balance) }}">
+                    @error('balance')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
                            placeholder="Email" value="{{ old('email', $customer->email) }}">
