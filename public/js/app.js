@@ -69394,6 +69394,7 @@ var Cart = /*#__PURE__*/function (_Component) {
     _this.handleSeach = _this.handleSeach.bind(_assertThisInitialized(_this));
     _this.setCustomerId = _this.setCustomerId.bind(_assertThisInitialized(_this));
     _this.handleClickSubmit = _this.handleClickSubmit.bind(_assertThisInitialized(_this));
+    _this.scanQR = _this.scanQR.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -69606,6 +69607,42 @@ var Cart = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "scanQR",
+    value: function scanQR() {
+      var _this8 = this;
+
+      sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
+        title: 'Scan to Pay',
+        imageUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=127.0.0.1:8000&amp;size=150x150',
+        imageWidth: 300,
+        imageHeight: 300,
+        imageAlt: 'QR Code',
+        input: 'text',
+        inputValue: this.getTotal(this.state.cart),
+        showCancelButton: true,
+        confirmButtonText: 'Done',
+        showLoaderOnConfirm: true,
+        preConfirm: function preConfirm(amount) {
+          return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/admin/orders', {
+            customer_id: _this8.state.customer_id,
+            amount: amount
+          }).then(function (res) {
+            _this8.loadCart();
+
+            return res.data;
+          })["catch"](function (err) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.showValidationMessage(err.response.data.message);
+          });
+        },
+        allowOutsideClick: function allowOutsideClick() {
+          return !sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.isLoading();
+        }
+      }).then(function (result) {
+        if (result.value) {//
+        }
+      });
+    }
+  }, {
     key: "handleClickSubmit",
     value: function handleClickSubmit() {
       var _this8 = this;
@@ -69722,10 +69759,17 @@ var Cart = /*#__PURE__*/function (_Component) {
         className: "col"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
+        className: "btn btn-success btn-block",
+        onClick: this.scanQR,
+        disabled: !cart.length
+      }, "Pay with QR code")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
         className: "btn btn-primary btn-block",
         disabled: !cart.length,
         onClick: this.handleClickSubmit
-      }, "Submit")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Pay in Cash")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-6 col-lg-8"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mb-2"

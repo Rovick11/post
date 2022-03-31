@@ -26,7 +26,8 @@ class Cart extends Component {
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handleSeach = this.handleSeach.bind(this);
         this.setCustomerId = this.setCustomerId.bind(this);
-        this.handleClickSubmit = this.handleClickSubmit.bind(this)
+        this.handleClickSubmit = this.handleClickSubmit.bind(this);
+        this.scanQR = this.scanQR.bind(this);
     }
 
     componentDidMount() {
@@ -167,6 +168,34 @@ class Cart extends Component {
     setCustomerId(event) {
         this.setState({ customer_id: event.target.value });
     }
+    scanQR() {
+        Swal.fire({
+            title: 'Scan to Pay',
+            imageUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=' + qrcode + '&amp;size=200x200',
+            imageWidth: 300,
+            imageHeight: 300,
+            imageAlt: 'QR Code',
+            input: 'hidden',
+            inputValue: this.getTotal(this.state.cart),
+            showCancelButton: true,
+            confirmButtonText: 'Done',
+            showLoaderOnConfirm: true,
+            preConfirm: (amount) => {
+                return axios.post('/admin/orders', {customer_id: this.state.customer_id, amount}).then(res => {
+                    this.loadCart();
+                    return res.data;
+                }).catch(err => {
+                    Swal.showValidationMessage(err.response.data.message)
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.value) {
+                //
+            }
+        })
+
+    }
     handleClickSubmit() {
         Swal.fire({
             title: 'Received Amount',
@@ -285,6 +314,16 @@ class Cart extends Component {
                                 type="button"
                                 className="btn btn-danger btn-block"
                                 onClick={this.handleEmptyCart}
+                                disabled={!cart.length}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button
+                                type="button"
+                                className="btn btn-success btn-block"
+                                onClick={this.scanQR}
                                 disabled={!cart.length}
                             >
                                 Cancel
