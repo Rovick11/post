@@ -88,6 +88,11 @@ class CustomerController extends Controller
         return view('customers.edit', compact('customer'));
     }
 
+    public function load(Customer $customer)
+    {
+        return view('customers.load', compact($customer));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -114,16 +119,6 @@ class CustomerController extends Controller
             // Save to Database
             $customer->avatar = $avatar_path;
         }
-
-        if (!$customer->save()) {
-            return redirect()->back()->with('error', 'Sorry, there\'re a problem while updating customer.');
-        }
-        return redirect()->route('customers.index')->with('success', 'Success, your customer have been updated.');
-    }
-
-    public function load(Request $request, Customer $customer)
-    {
-        $customer->balance = $request->balance;
 
         if (!$customer->save()) {
             return redirect()->back()->with('error', 'Sorry, there\'re a problem while updating customer.');

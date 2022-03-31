@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoadController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
@@ -39,3 +40,6 @@ Route::get('qr-code-g', function () {
   return view('qrCode');
     
 });
+Route::get('orders/reciept/{id}','App\Http\Controllers\OrderController@reciept')->name('reciept.{id}');
+Route::get('load/{id}',[LoadController::class, 'load']);
+Route::get('load',[LoadController::class, 'update']);
