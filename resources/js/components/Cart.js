@@ -172,8 +172,6 @@ class Cart extends Component {
             title: 'Received Amount',
             input: 'text',
             inputValue: this.getTotal(this.state.cart),
-            html: 'or SCAN '+
-                  "{!! QrCode::size(250)->generate('127.0.0.1:8000'); !!}",
             showCancelButton: true,
             confirmButtonText: 'Send',
             showLoaderOnConfirm: true,
