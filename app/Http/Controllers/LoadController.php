@@ -17,7 +17,7 @@ class LoadController extends Controller
     {
         $data=Customer::find($req->id);
 
-        $rem=Customer::find($req->balance);
+        $rem=($req->balance);
         $dep=$req->bal;
 
         $total=$dep+$rem;
