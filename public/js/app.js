@@ -69613,7 +69613,7 @@ var Cart = /*#__PURE__*/function (_Component) {
 
       sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
         title: 'Scan to Pay',
-        imageUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=127.0.0.1:8000&amp;size=150x150',
+        imageUrl: 'https://api.qrserver.com/v1/create-qr-code/?data=127.0.0.1:8000/customers&amp;size=150x150',
         imageWidth: 300,
         imageHeight: 300,
         imageAlt: 'QR Code',

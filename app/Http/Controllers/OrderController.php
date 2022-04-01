@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
 use LDAP\Result;
+use App\Models\Customer;
 
 class OrderController extends Controller
 {
@@ -64,6 +65,14 @@ class OrderController extends Controller
             'amount' => $request->amount,
             'user_id' => $request->user()->id,
         ]);
+
+        $data=Customer::find($request->user()->id);
+        $rem=($data->balance);
+        $total=$rem - $request->amount;
+        $data->balance=$total;
+        $data->save();
+
+        
         return 'success';
     }
 }
